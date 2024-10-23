@@ -6,7 +6,7 @@ const HomeBooks = () => {
   const [error, setError] = useState(null);
   const [selectedGenre, setSelectedGenre] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:5000/api/allbook")
+    fetch("https://mern-book-app-alpha.vercel.app/api/allbook")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Can not connect to DB server.");

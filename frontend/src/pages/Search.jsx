@@ -15,7 +15,7 @@ const Search = () => {
     setError(null);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/booksearch?query=${encodeURIComponent(
+        `https://mern-book-app-alpha.vercel.app/api/booksearch?query=${encodeURIComponent(
           searchTerm
         )}`
       );
