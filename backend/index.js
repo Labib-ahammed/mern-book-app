@@ -11,7 +11,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://mern-book-app-alpha.vercel.app"], // Replace with your actual domain
+    origin: [
+      "https://mern-book-app-alpha.vercel.app",
+      "https://redbookpdf.vercel.app",
+    ],
     methods: ["POST", "GET", "DELETE"],
     credentials: true,
   })
