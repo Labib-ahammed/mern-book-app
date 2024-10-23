@@ -14,6 +14,7 @@ app.use(
     origin: [
       "https://mern-book-app-alpha.vercel.app",
       "https://redbookpdf.vercel.app",
+      "https://redbook-0173-admin.vercel.app",
     ],
     methods: ["POST", "GET", "DELETE"],
     credentials: true,

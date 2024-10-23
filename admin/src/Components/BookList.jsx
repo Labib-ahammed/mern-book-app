@@ -7,7 +7,7 @@ const BookList = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/allbook");
+        const response = await fetch("https://mern-book-app-alpha.vercel.app/api/allbook");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -25,7 +25,7 @@ const BookList = () => {
   const handelDelete = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/bookdelete/${id}`,
+        `https://mern-book-app-alpha.vercel.app/api/bookdelete/${id}`,
         {
           method: "DELETE",
         }

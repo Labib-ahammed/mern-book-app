@@ -96,7 +96,7 @@ const App = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/postbook`, {
+      const response = await fetch(`https://mern-book-app-alpha.vercel.app/api/postbook`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
