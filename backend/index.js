@@ -10,7 +10,7 @@ const app = express();
 const allowedOrigins = ['http://localhost:5174', 'http://localhost:5173'];
 
 app.use(cors({
-  origin: ["http://yourdomain.com"], // Replace with your actual domain
+  origin: ["https://mern-book-app-alpha.vercel.app"], // Replace with your actual domain
   methods: ["POST", "GET", "DELETE"],
   credentials: true
 }));
