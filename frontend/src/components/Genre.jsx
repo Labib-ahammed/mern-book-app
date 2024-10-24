@@ -9,6 +9,7 @@ import Thriller from "./assets/Thiller.jpg";
 import Detective from "./assets/Detective.jpg";
 import Story from "./assets/Story-Books.jpg";
 import Fiction from "./assets/fiction.jpg";
+import Academic from "./assets/Academic.jpg"
 
 // creating an array of all the images
 const genres = [
@@ -21,6 +22,7 @@ const genres = [
   { src: Detective, alt: "Detective", value: "detective" },
   { src: Story, alt: "Story", value: "story" },
   { src: Fiction, alt: "Fiction", value: "fiction" },
+  {src: Academic, alt: "Academic", value: "academic"}
 ];
 const Genre = ({ onSelectGenre }) => {
   return (
@@ -32,7 +34,7 @@ const Genre = ({ onSelectGenre }) => {
         {genres.map((genre, idx) => (
           <div
             key={idx}
-            className="w-1/3 p-2 cursor-pointer my-2 flex flex-col justify-center items-center"
+            className="w-[160px] p-2 cursor-pointer my-2 flex flex-col justify-center items-center md:w-1/3"
             onClick={() => onSelectGenre(genre.value)}
           >
             <img

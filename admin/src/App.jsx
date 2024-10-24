@@ -10,12 +10,14 @@ import BookList from "./Components/BookList";
 
 const App = () => {
   const [file, setFile] = useState(null);
+  const [progressCover, setProgressCover] = useState(0); // Changed to number
+  const [progressFile, setProgressFile] = useState(0); // New state for file upload progress
   const [coverFile, setCoverFile] = useState(null);
   const [url, setUrl] = useState("");
   const [coverUrl, setCoverUrl] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [genre, setGenre] = useState(""); // State for genre
+  const [genre, setGenre] = useState("");
 
   const firebaseConfig = {
     apiKey: "AIzaSyDSUWU26D9ScJhG9nPFFAD5U2zjFQz--vs",
@@ -39,7 +41,7 @@ const App = () => {
       setAuthor(value);
     }
     if (name === "genre") {
-      setGenre(value); // Update genre state
+      setGenre(value);
     }
   };
 
@@ -68,7 +70,11 @@ const App = () => {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(`upload ${progress}% done`);
+        if (type === "cover") {
+          setProgressCover(progress); // Update cover progress
+        } else {
+          setProgressFile(progress); // Update file progress
+        }
       },
       (error) => {
         console.log("upload file error", error.message);
@@ -96,19 +102,22 @@ const App = () => {
     }
 
     try {
-      const response = await fetch(`https://mern-book-app-alpha.vercel.app/api/postbook`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          author,
-          genre, // Include genre in the request
-          downloadLink: url,
-          coverImage: coverUrl,
-        }),
-      });
+      const response = await fetch(
+        `https://mern-book-app-alpha.vercel.app/api/postbook`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            author,
+            genre,
+            downloadLink: url,
+            coverImage: coverUrl,
+          }),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to upload book data.");
 
@@ -116,7 +125,6 @@ const App = () => {
       console.log(data);
       alert("Book data uploaded successfully!");
 
-      // Reset form after successful submission
       resetForm();
     } catch (error) {
       console.log("Error uploading to database", error.message);
@@ -124,7 +132,6 @@ const App = () => {
     }
   };
 
-  // Function to reset form fields
   const resetForm = () => {
     setTitle("");
     setAuthor("");
@@ -133,6 +140,8 @@ const App = () => {
     setCoverFile(null);
     setUrl("");
     setCoverUrl("");
+    setProgressCover(0); // Reset progress
+    setProgressFile(0); // Reset progress
   };
 
   return (
@@ -174,7 +183,7 @@ const App = () => {
             <option value="romantic">Romantic</option>
             <option value="islamic">Islamic</option>
             <option value="adventure">Adventure</option>
-            <option value="thriller">Thriller</option> {/* Fixed typo */}
+            <option value="thriller">Thriller</option>
             <option value="detective">Detective</option>
             <option value="story">Story</option>
             <option value="fiction">Fiction</option>
@@ -194,7 +203,9 @@ const App = () => {
             onClick={() => handleFileUpload("cover")}
             className="p-2 bg-teal-500 text-white rounded-md m-2"
           >
-            Upload Cover
+            {progressCover > 0
+              ? `${Math.round(progressCover)}%`
+              : "Upload Cover"}
           </button>
         </div>
 
@@ -213,7 +224,7 @@ const App = () => {
             onClick={() => handleFileUpload("file")}
             className="p-2 bg-teal-500 text-white rounded-md m-2"
           >
-            Upload File
+            {progressFile > 0 ? `${Math.round(progressFile)}%` : "Upload File"}
           </button>
         </div>
 

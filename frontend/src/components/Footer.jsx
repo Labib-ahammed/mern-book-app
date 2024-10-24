@@ -44,7 +44,7 @@ const Footer = () => {
             </span>
             BOOK'S
           </Link>
-          <div className="text-white flex gap-4 mt-4 justify-center sm:flex-col">
+          <div className="text-white flex gap-4 mt-4 justify-center text-xs sm:flex-col md:text-[17px]">
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
             <Link to="/books">Books</Link>
