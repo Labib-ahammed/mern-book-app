@@ -9,8 +9,8 @@ import Thriller from "./assets/Thiller.jpg";
 import Detective from "./assets/Detective.jpg";
 import Story from "./assets/Story-Books.jpg";
 import Fiction from "./assets/fiction.jpg";
-import Academic from "./assets/Academic.jpg"
-
+import Academic from "./assets/Academic.jpg";
+import Games from "./assets/games.jpg";
 // creating an array of all the images
 const genres = [
   { src: Novel, alt: "Novel", value: "novel" },
@@ -22,7 +22,8 @@ const genres = [
   { src: Detective, alt: "Detective", value: "detective" },
   { src: Story, alt: "Story", value: "story" },
   { src: Fiction, alt: "Fiction", value: "fiction" },
-  {src: Academic, alt: "Academic", value: "academic"}
+  {src: Academic, alt: "Academic", value: "academic"},
+  {src: Games, alt: "Games", value: "games"}
 ];
 const Genre = ({ onSelectGenre }) => {
   return (
