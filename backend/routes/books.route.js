@@ -4,7 +4,9 @@ const route = express.Router();
 
 route.get("/allbook", async (req, res) => {
   try {
-    const allbook = await Book.find();
+    const sortDirection = req.query.order === "asc" ? 1 : -1;
+    const allbook = await Book.find()
+      .sort({ createdAt: sortDirection })
     res.json(allbook);
   } catch (error) {
     console.log(error.message);
@@ -36,8 +38,10 @@ route.delete("/bookdelete/:id", async (req, res) => {
 
 route.get("/booksearch", async (req, res) => {
   try {
+    const sortDirection = req.query.order === "asc" ? 1 : -1;
     const { query } = req.query;
-    const book = await Book.find({ title: { $regex: query, $options: "i" } });
+    const book = await Book.find({ title: { $regex: query, $options: "i" } })
+    .sort({ createdAt: sortDirection })
     res.json(book);
   } catch (error) {
     console.log(error.message);
