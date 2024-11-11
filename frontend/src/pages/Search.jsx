@@ -17,7 +17,7 @@ const Search = () => {
       const response = await fetch(
         `https://mern-book-app-alpha.vercel.app/api/booksearch?query=${encodeURIComponent(
           searchTerm
-        )}`
+        )}&order=desc`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
