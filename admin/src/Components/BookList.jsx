@@ -7,7 +7,7 @@ const BookList = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch("https://mern-book-app-alpha.vercel.app/api/allbook?order=desc");
+        const response = await fetch("https://mern-book-app-alpha.vercel.app/api/allbook?order=asc");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
