@@ -5,7 +5,7 @@ const Book = () => {
   const [book, setBook] = useState([]);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetch("https://mern-book-app-alpha.vercel.app/api/allbook")
+    fetch("https://mern-book-app-alpha.vercel.app/api/allbook?order=desc")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Can not connect to DB server.");
