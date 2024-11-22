@@ -58,9 +58,11 @@ const App = () => {
     const selectedFile = type === "cover" ? coverFile : file;
     if (!selectedFile) return;
 
+    const fileWithDate = new Date().getTime() + "-";
+
     const storageRef = ref(
       storage,
-      `${type === "cover" ? "coverImage" : "books"}/${selectedFile.name}`
+      `${type === "cover" ? "coverImage" : "books"}/fileWithDate+${selectedFile.name}`
     );
 
     const uploadTask = uploadBytesResumable(storageRef, selectedFile);
